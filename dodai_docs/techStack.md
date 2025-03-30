@@ -4,6 +4,7 @@
 - **HTML5:** For structuring the chatbot widget content.
 - **CSS3:** For styling the widget, including layout (Flexbox/Grid), responsiveness, transitions, and visual appearance based on the provided design (gradients, rounded corners, etc.).
 - **Vanilla JavaScript (ES6+):** For handling user interactions (opening/closing chat, sending messages), managing state (chat ID via localStorage), DOM manipulation, and asynchronous communication (`fetch` API) with the n8n webhook.
+- **[marked.js](https://cdn.jsdelivr.net/npm/marked/marked.min.js):** For rendering Markdown in chat messages.
 
 ## Communication
 - **Fetch API:** Standard browser API for making HTTP requests to the n8n webhook.

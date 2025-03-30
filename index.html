@@ -1,96 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chatbot Widget</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chatbot Widget</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Chat Bubble -->
-    <div id="chat-bubble" title="Open Chat" aria-label="Open Chat">
-        <!-- FS logo -->
-        <span>FS</span>
+  <!-- Chat Bubble -->
+  <div id="chat-bubble" title="Open Chat" aria-label="Open Chat" role="button" tabindex="0">
+    <span>FS</span>
+  </div>
+
+  <!-- Chat Widget Container -->
+  <section id="chat-widget-container" class="hidden" aria-hidden="true">
+    <!-- Header -->
+    <header class="chat-header">
+      <h2 class="header-title">Free Spirit Tours</h2>
+      <div class="header-controls">
+        <button id="theme-toggle" type="button" class="theme-toggle-button" aria-label="Toggle theme">
+          <span class="toggle-track"></span>
+          <span class="toggle-thumb"></span>
+        </button>
+        <button id="close-chat" type="button" aria-label="Close Chat">
+          <span>✕</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- Initial View -->
+    <div id="chat-initial-view">
+      <h1>How can we help you today? <span>👋</span></h1>
+
+      <nav class="nav-buttons">
+        <a href="https://freespirittours.eu/tours/" class="nav-button" target="_blank" rel="noopener noreferrer">
+          <span>📝</span> Book a Tour
+        </a>
+        <a href="https://freespirittours.eu/about-us/faq" class="nav-button" target="_blank" rel="noopener noreferrer">
+          <span>❔</span> FAQ
+        </a>
+        <a href="https://freespirittours.eu/about-us/contact-us/" class="nav-button" target="_blank" rel="noopener noreferrer">
+          <span>✉️</span> Contact Us
+        </a>
+      </nav>
+
+      <div class="intro-block">
+        <div class="intro-text-button">
+          <p>Let me know if you have any questions!</p>
+          <button id="start-chat-button" type="button">Chat with FreeSpirit Bot</button>
+        </div>
+      </div>
+
+      <footer class="footer-container">
+        <a href="#" class="privacy-link">Privacy Terms</a>
+        <div class="chat-footer">
+          Powered by dodai
+        </div>
+      </footer>
     </div>
 
-    <!-- Chat Widget Container -->
-    <div id="chat-widget-container" class="hidden"> <!-- Start hidden -->
-        <!-- Header -->
-        <div class="chat-header">
-            <span class="header-title">Free Spirit Tours</span>
-            <div class="header-controls">
-                <button id="theme-toggle" class="theme-toggle-button" aria-label="Toggle theme">
-                    <span class="toggle-track"></span>
-                    <span class="toggle-thumb"></span>
-                </button>
-                <button id="close-chat" aria-label="Close Chat">
-                    <span>✕</span>
-                </button>
-            </div>
+    <!-- Conversation View -->
+    <div id="chat-conversation-view" class="hidden" aria-hidden="true">
+      <div class="conversation-header">
+        <button id="back-to-initial" type="button" aria-label="Back to Options">
+          <span>&larr;</span>
+        </button>
+        <span class="conversation-title">Chat with us</span>
+        <button id="close-conversation" type="button" aria-label="Close Conversation">
+          <span>✕</span>
+        </button>
+      </div>
+      <div id="chat-messages">
+        <!-- Typing Indicator -->
+        <div id="typing-indicator" class="hidden message bot-message">
+          <span class="dot"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
         </div>
-
-        <!-- Initial View -->
-        <div id="chat-initial-view">
-            <h1>How can we help you today? <span>👋</span></h1>
-            <!-- Placeholder for waving hand -->
-            
-
-            <div class="nav-buttons">
-                <a href="https://freespirittours.eu/tours/" class="nav-button" target="_blank">
-                    <span>📝</span> Book a Tour
-                </a>
-                <a href="https://freespirittours.eu/about-us/faq" class="nav-button" target="_blank">
-                    <span>❔</span> FAQ
-                </a>
-                <a href="https://freespirittours.eu/about-us/contact-us/" class="nav-button" target="_blank">
-                    <span>✉️</span> Contact Us
-                </a>
-            </div>
-
-            <div class="intro-block">
-                <!-- Icon and Title Removed -->
-                <div class="intro-text-button">
-                    <p>Let me know if you have any questions!</p>
-                    <button id="start-chat-button">Chat with FreeSpirit Bot</button>
-                </div>
-            </div>
-            <div class="footer-container">
-                 <a href="#" class="privacy-link">Privacy Terms</a>
-                 <div class="chat-footer">
-                     Powered by dodai
-                 </div>
-            </div>
-        </div>
-
-        <!-- Conversation View -->
-        <div id="chat-conversation-view" class="hidden">
-            <div class="conversation-header">
-                <button id="back-to-initial" aria-label="Back to Options">
-                    <span>&larr;</span>
-                </button>
-                <span class="conversation-title">Chat with us</span>
-                <button id="close-conversation" aria-label="Close Conversation">
-                    <span>✕</span>
-                </button>
-            </div>
-            <div id="chat-messages">
-                <!-- Typing Indicator -->
-                <div id="typing-indicator" class="hidden message bot-message">
-                    <span class="dot"></span><span class="dot"></span><span class="dot"></span>
-                </div>
-                <!-- Messages will be appended here by JavaScript -->
-            </div>
-            <div class="chat-input-area">
-                <input type="text" id="chat-input" placeholder="Type your message...">
-                <button id="send-button" aria-label="Send Message">
-                    <!-- Placeholder for send icon -->
-                    <span>Send</span>
-                </button>
-            </div>
-        </div>
+        <!-- Messages will be appended here by JavaScript -->
+      </div>
+      <div class="chat-input-area">
+        <input type="text" id="chat-input" placeholder="Type your message..." aria-label="Message input">
+        <button id="send-button" type="button" aria-label="Send Message">
+          <span>Send</span>
+        </button>
+      </div>
     </div>
+  </section>
 
-    <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>

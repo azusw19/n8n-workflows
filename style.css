@@ -7,7 +7,7 @@
     --bg-light: #f9fafb;
     --bg-white: #ffffff;
     --border-light: #e5e7eb;
-    
+
     /* Additional variables */
     --header-bg: #ffffff;
     --header-text: #111827;
@@ -309,7 +309,7 @@ body {
     opacity: 0;
     transform: scale(0.1);
     transform-origin: center center;
-    transition: 
+    transition:
         opacity 0.3s ease,
         transform 0.5s cubic-bezier(0.2, 0, 0, 1);
     pointer-events: none;
@@ -570,4 +570,142 @@ body {
     #send-button {
         padding: 10px 15px;
     }
+}
+
+/* --- FINAL CSS FOR MESSAGE FOOTER AND COPY BUTTON (Flexbox Layout) --- */
+
+/* Adjust message container */
+.message {
+  /* Remove absolute positioning context and bottom padding */
+  /* display: block; is default */
+}
+
+/* Container for the main text */
+.message-content {
+   display: block; /* Or inline, depending on desired flow */
+   word-wrap: break-word;
+   margin-bottom: 4px; /* Add small space between text and footer */
+}
+
+/* Footer container - Now part of the normal flow */
+.message-footer {
+  font-size: 11px;
+  display: flex; /* Use flex for time and button */
+  align-items: center;
+  gap: 6px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  /* Remove absolute positioning */
+  /* Remove bottom positioning */
+  /* Remove pointer-events none */
+}
+
+/* Make footer slightly more visible on message hover */
+.message:hover .message-footer {
+    opacity: 1;
+}
+
+/* Align footer differently for user vs bot messages using text-align on parent or align-self */
+.user-message {
+    /* align-self: flex-end; already applied */
+    text-align: right; /* Align text content and footer to the right */
+}
+.user-message .message-footer {
+  justify-content: flex-end; /* Align items within the footer to the end */
+  color: rgba(255, 255, 255, 0.85); /* Slightly less bright white for better blend */
+}
+
+.bot-message {
+    /* align-self: flex-start; already applied */
+    text-align: left; /* Align text content and footer to the left */
+}
+.bot-message .message-footer {
+  justify-content: flex-start; /* Align items within the footer to the start */
+  color: var(--text-light);
+}
+
+
+/* Timestamp styling - Inherits color */
+.message-time {
+  /* No change needed */
+}
+
+/* Copy button styling - Inherits color, adjust interaction */
+.copy-button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  line-height: 1;
+  /* Opacity handled by footer hover */
+}
+
+.copy-button svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+.copy-button span {
+    /* Inherits styles */
+}
+.copy-button:hover span {
+    text-decoration: underline; /* Underline text on hover */
+}
+/* Remove background hover for copy button itself */
+.copy-button:hover {
+   background-color: transparent;
+}
+
+[data-theme="dark"] .copy-button:hover {
+    background-color: transparent;
+}
+
+
+/* Dark theme adjustments for user message footer */
+[data-theme="dark"] .user-message .message-footer {
+    color: rgba(255, 255, 255, 0.85); /* Keep light color */
+}
+
+/* Dark theme adjustments for bot message footer */
+[data-theme="dark"] .bot-message .message-footer {
+    color: var(--text-light); /* Use theme's light text */
+}
+
+/* Styling for the retry button in error messages */
+.retry-button {
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 8px; /* Space it from the error text */
+    transition: filter 0.2s ease;
+}
+
+.retry-button:hover {
+    filter: brightness(1.1);
+}
+
+.error-message {
+    background-color: #ffebee; /* Light red background for errors */
+    color: #c62828; /* Darker red text */
+    border: 1px solid #ef9a9a; /* Red border */
+    align-self: stretch; /* Make error messages full width */
+    max-width: 100%;
+    border-radius: 8px; /* Consistent radius */
+}
+
+[data-theme="dark"] .error-message {
+    background-color: #4a1c1c; /* Dark red background */
+    color: #ffcdd2; /* Lighter red text */
+    border-color: #801313; /* Darker red border */
 }
